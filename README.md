@@ -40,10 +40,3 @@
 12. [Added the Prometheus helm chart repository and implemented the cluster monitoring using Prometheus and Grafana.](https://github.com/NotHarshhaa/DevOps-Projects/blob/master/DevOps-Project-06/Steps/step12.md#L1) 
     * Note: Changed the default service type of Prometheus and Grafana services from ClusterIP to LoadBalancer to access them from the browser.
 
----
-
-# Hit the Star! ⭐
-
-***If you are planning to use this repo for learning, please hit the star. Thanks!***
-
-#### Author by [Harshhaa Reddy](https://github.com/NotHarshhaa)

@@ -40,3 +40,19 @@
 12. [Added the Prometheus helm chart repository and implemented the cluster monitoring using Prometheus and Grafana.](https://github.com/NotHarshhaa/DevOps-Projects/blob/master/DevOps-Project-06/Steps/step12.md#L1) 
     * Note: Changed the default service type of Prometheus and Grafana services from ClusterIP to LoadBalancer to access them from the browser.
 
+## Architecture diagrams
+
+### System architecture
+
+![CI/CD Automator system architecture](docs/images/system-architecture.svg)
+
+[Open system architecture diagram](docs/images/system-architecture.svg)
+
+### Pipeline workflow
+
+![CI/CD pipeline workflow](docs/images/pipeline-workflow.svg)
+
+[Open pipeline workflow diagram](docs/images/pipeline-workflow.svg)
+
+> These diagrams summarize the workflow documented in this repository. Actual AWS provisioning, Jenkins integrations, artifact publishing, EKS deployment, and monitoring depend on environment configuration and credentials; the diagrams do not imply a live deployment.
+

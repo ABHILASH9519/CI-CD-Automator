@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390">
+<defs><style>text{font-family:Inter,Arial,sans-serif;fill:#172033}.title{font-size:27px;font-weight:700}.head{font-size:16px;font-weight:700}.body{font-size:13px}.box{fill:#f7f9fc;stroke:#8a9bb5;stroke-width:2}.blue{fill:#e8f2ff;stroke:#4385cf;stroke-width:2}.green{fill:#e8f7ef;stroke:#32956a;stroke-width:2}.purple{fill:#f2ebff;stroke:#8c6ac8;stroke-width:2}.line{stroke:#65758b;stroke-width:2.5;fill:none;marker-end:url(#arrow)}</style><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#65758b"/></marker></defs>
+<rect width="1200" height="390" rx="18" fill="#fff"/><text x="600" y="42" text-anchor="middle" class="title">CI/CD Pipeline Workflow</text>
+<rect x="30" y="100" width="145" height="90" rx="10" class="blue"/><text x="102" y="132" text-anchor="middle" class="head">1. Commit</text><text x="102" y="157" text-anchor="middle" class="body">GitHub push</text>
+<rect x="215" y="100" width="155" height="90" rx="10" class="purple"/><text x="292" y="132" text-anchor="middle" class="head">2. Trigger</text><text x="292" y="157" text-anchor="middle" class="body">Webhook / scan</text>
+<rect x="410" y="100" width="165" height="90" rx="10" class="box"/><text x="492" y="132" text-anchor="middle" class="head">3. Build &amp; Test</text><text x="492" y="157" text-anchor="middle" class="body">Maven + unit tests</text>
+<rect x="615" y="100" width="160" height="90" rx="10" class="blue"/><text x="695" y="132" text-anchor="middle" class="head">4. Analyze</text><text x="695" y="157" text-anchor="middle" class="body">Sonar quality gate</text>
+<rect x="815" y="100" width="165" height="90" rx="10" class="green"/><text x="897" y="132" text-anchor="middle" class="head">5. Package</text><text x="897" y="157" text-anchor="middle" class="body">Docker + JFrog</text>
+<rect x="1020" y="100" width="150" height="90" rx="10" class="purple"/><text x="1095" y="132" text-anchor="middle" class="head">6. Deploy</text><text x="1095" y="157" text-anchor="middle" class="body">Amazon EKS</text>
+<path d="M175 145 H210 M370 145 H405 M575 145 H610 M775 145 H810 M980 145 H1015" class="line"/>
+<rect x="260" y="260" width="250" height="75" rx="10" class="box"/><text x="385" y="289" text-anchor="middle" class="head">Infrastructure provisioning</text><text x="385" y="313" text-anchor="middle" class="body">Terraform + Ansible setup</text>
+<rect x="650" y="260" width="300" height="75" rx="10" class="green"/><text x="800" y="289" text-anchor="middle" class="head">Monitor deployed workloads</text><text x="800" y="313" text-anchor="middle" class="body">Prometheus metrics + Grafana</text>
+<path d="M385 260 V220 H492 V195" class="line"/><path d="M1095 190 V225 H800 V255" class="line"/>
+</svg>

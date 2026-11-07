@@ -18,8 +18,35 @@ class RepositoryDetailsControllerTest extends AbstractTest {
     }
 
     @Test
+    void rejectsTrendCountAboveProviderLimit() throws Exception {
+        int status = mvc.perform(MockMvcRequestBuilders.get("/trends?placeid=1&count=21")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andReturn().getResponse().getStatus();
+
+        assertEquals(400, status);
+    }
+
+    @Test
+    void rejectsNonNumericTrendCount() throws Exception {
+        int status = mvc.perform(MockMvcRequestBuilders.get("/trends?placeid=1&count=many")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andReturn().getResponse().getStatus();
+
+        assertEquals(400, status);
+    }
+
+    @Test
     void rejectsNonNumericPlaceId() throws Exception {
         int status = mvc.perform(MockMvcRequestBuilders.get("/trends?placeid=world&count=5")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andReturn().getResponse().getStatus();
+
+        assertEquals(400, status);
+    }
+
+    @Test
+    void rejectsNonPositivePlaceId() throws Exception {
+        int status = mvc.perform(MockMvcRequestBuilders.get("/trends?placeid=0&count=5")
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn().getResponse().getStatus();
 

@@ -14,15 +14,16 @@ environment {
         stage("build"){
             steps {
                  echo "----------- build started ----------"
-                sh 'mvn clean deploy -Dmaven.test.skip=true'
-                 echo "----------- build complted ----------"
+                // Keep Maven's test phase enabled before publishing artifacts.
+                sh 'mvn clean deploy'
+                 echo "----------- build completed ----------"
             }
         }
         stage("test"){
             steps{
-                echo "----------- unit test started ----------"
+                echo "----------- unit test report started ----------"
                 sh 'mvn surefire-report:report'
-                 echo "----------- unit test Complted ----------"
+                 echo "----------- unit test report completed ----------"
             }
         }
 
@@ -31,7 +32,7 @@ environment {
           scannerHome = tool 'satish-sonarqube-scanner'
         }
             steps{
-            withSonarQubeEnv('satish-sonarqube-server') { // If you have configured more than one global server connection, you can specify its name
+            withSonarQubeEnv('satish-sonarqube-server') {
               sh "${scannerHome}/bin/sonar-scanner"
             }
             }
@@ -39,8 +40,8 @@ environment {
         stage("Quality Gate"){
             steps {
                 script {
-                timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-            def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+                timeout(time: 1, unit: 'HOURS') {
+            def qg = waitForQualityGate()
             if (qg.status != 'OK') {
             error "Pipeline aborted due to quality gate failure: ${qg.status}"
             }
@@ -68,10 +69,9 @@ environment {
                      def buildInfo = server.upload(uploadSpec)
                      buildInfo.env.collect()
                      server.publishBuildInfo(buildInfo)
-                     echo '<--------------- Jar Publish Ended --------------->'  
-            
+                     echo '<--------------- Jar Publish Ended --------------->'
             }
-        }   
+        }
     }
 
 
@@ -88,22 +88,14 @@ environment {
             stage (" Docker Publish "){
         steps {
             script {
-               echo '<--------------- Docker Publish Started --------------->'  
+               echo '<--------------- Docker Publish Started --------------->'
                 docker.withRegistry(registry, 'jfrog_cred'){
                     app.push()
-                }    
-               echo '<--------------- Docker Publish Ended --------------->'  
+                }
+               echo '<--------------- Docker Publish Ended --------------->'
             }
         }
     }
-
-    // stage (" Deploy "){
-    //     steps {
-    //         script {
-    //            sh './deploy.sh'  
-    //         }
-    //     }
-    // }
 
 stage(" Deploy ") {
        steps {
@@ -113,8 +105,6 @@ stage(" Deploy ") {
             echo '<--------------- Helm deploy Ends --------------->'
          }
        }
-}  
 }
 }
-
-
+}
